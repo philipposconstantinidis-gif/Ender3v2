@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact — PrintSettings</title>
+    <meta name="description" content="Contact PrintSettings — get in touch with feedback, settings suggestions, or to report an issue with our Ender 3 V2 reference site.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Sora:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --bg: #0C0E12; --surface: #14171E; --surface-2: #1C2028; --text: #E4E5EA; --text-muted: #6E7280;
+            --accent: #3B82F6; --accent-glow: rgba(59,130,246,0.1); --border: #262A34;
+        }
+        body { font-family: 'Sora', sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; -webkit-font-smoothing: antialiased; }
+        nav { max-width: 900px; margin: 0 auto; padding: 24px 24px 0; display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+        nav .logo { font-family: 'Space Mono', monospace; font-size: 16px; color: var(--accent); font-weight: 700; text-decoration: none; }
+        nav .nav-links { display: flex; gap: 22px; }
+        nav .nav-link { font-family: 'Sora', sans-serif; font-size: 13px; font-weight: 500; color: var(--text-muted); text-decoration: none; }
+        nav .nav-link:hover { color: var(--text); }
+        nav .nav-link.active { color: var(--accent); font-weight: 600; }
+        .container { max-width: 760px; margin: 0 auto; padding: 48px 24px; }
+        h1 { font-size: clamp(30px, 5vw, 44px); line-height: 1.1; margin-bottom: 24px; letter-spacing: -0.5px; font-weight: 800; }
+        h2 { font-size: 18px; margin: 28px 0 12px; font-weight: 700; }
+        p { color: var(--text-muted); font-size: 15px; margin-bottom: 14px; }
+        ul { color: var(--text-muted); padding-left: 20px; margin-bottom: 16px; font-size: 15px; }
+        ul li { margin-bottom: 6px; }
+        a { color: var(--accent); }
+        .content-card { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 40px; }
+        .contact-box { background: var(--accent-glow); border: 1px solid rgba(59,130,246,0.25); padding: 24px 28px; margin: 24px 0; border-radius: 12px; }
+        .contact-box .label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: var(--accent); margin-bottom: 8px; font-family: 'Space Mono', monospace; }
+        .contact-box .email { font-family: 'Space Mono', monospace; font-size: 18px; color: var(--text); }
+        .contact-box .email a { color: var(--text); text-decoration: none; }
+        .contact-box .email a:hover { color: var(--accent); }
+        footer { max-width: 900px; margin: 0 auto; padding: 24px; border-top: 1px solid var(--border); text-align: center; font-size: 11px; color: var(--text-muted); font-family: 'Space Mono', monospace; }
+        @media (max-width: 600px) { .content-card { padding: 28px; } }
+    </style>
+</head>
+<body>
+
+<nav>
+    <a href="/" class="logo">&gt;_ PrintSettings</a>
+    <div class="nav-links">
+        <a href="/" class="nav-link">Settings</a>
+        <a href="/about.html" class="nav-link">About</a>
+        <a href="/contact.html" class="nav-link active">Contact</a>
+        <a href="/privacy.html" class="nav-link">Privacy</a>
+    </div>
+</nav>
+
+<div class="container">
+    <div class="content-card">
+        <h1>Contact</h1>
+
+        <p>Thanks for using PrintSettings. If you've got feedback, a settings suggestion, or you've spotted an error, drop us an email.</p>
+
+        <div class="contact-box">
+            <div class="label">Email</div>
+            <div class="email"><a href="mailto:hello@ender3v2.com">hello@ender3v2.com</a></div>
+        </div>
+
+        <h2>What to Get in Touch About</h2>
+        <ul>
+            <li><strong>Settings feedback</strong> — if a recommended setting didn't work for you, tell us what filament and what happened</li>
+            <li><strong>Filament suggestions</strong> — if there's a filament type you'd like us to add (PCTG, ASA-X, glass-fibre composites, etc.)</li>
+            <li><strong>Bug reports</strong> — anything broken on the site</li>
+            <li><strong>Content ideas</strong> — additional guides, troubleshooting topics, or upgrade reviews you'd like to see</li>
+            <li><strong>Corrections</strong> — if something is technically wrong, we want to know</li>
+        </ul>
+
+        <h2>What We Can't Help With</h2>
+        <p>We're a small reference site — we can't troubleshoot your specific printer issues over email, recommend specific filament brands, or diagnose hardware problems remotely. For these, the r/ender3v2 and r/3Dprinting subreddits, plus the official Creality support, are your best bets.</p>
+
+        <h2>Response Time</h2>
+        <p>We aim to reply to every email within 3-5 working days. Please be patient — this is a hobby project, not a business.</p>
+    </div>
+</div>
+
+<footer>
+    <div style="margin-bottom: 12px;">
+        <a href="/" style="color: var(--text-muted); margin: 0 12px; text-decoration: none;">Settings</a>
+        <a href="/about.html" style="color: var(--text-muted); margin: 0 12px; text-decoration: none;">About</a>
+        <a href="/contact.html" style="color: var(--text-muted); margin: 0 12px; text-decoration: none;">Contact</a>
+        <a href="/privacy.html" style="color: var(--text-muted); margin: 0 12px; text-decoration: none;">Privacy</a>
+    </div>
+    &copy; 2026 PrintSettings. Not affiliated with Creality.
+</footer>
+
+</body>
+</html>

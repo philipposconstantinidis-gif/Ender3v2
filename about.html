@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About PrintSettings — Ender 3 V2 Quick Reference</title>
+    <meta name="description" content="About PrintSettings — a free Ender 3 V2 settings reference site built by 3D printing enthusiasts to help you dial in perfect prints with any filament.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Sora:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --bg: #0C0E12; --surface: #14171E; --text: #E4E5EA; --text-muted: #6E7280;
+            --accent: #3B82F6; --border: #262A34;
+        }
+        body { font-family: 'Sora', sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; -webkit-font-smoothing: antialiased; }
+        nav { max-width: 900px; margin: 0 auto; padding: 24px 24px 0; display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+        nav .logo { font-family: 'Space Mono', monospace; font-size: 16px; color: var(--accent); font-weight: 700; text-decoration: none; }
+        nav .nav-links { display: flex; gap: 22px; }
+        nav .nav-link { font-family: 'Sora', sans-serif; font-size: 13px; font-weight: 500; color: var(--text-muted); text-decoration: none; transition: color 0.15s; }
+        nav .nav-link:hover { color: var(--text); }
+        nav .nav-link.active { color: var(--accent); font-weight: 600; }
+        .container { max-width: 760px; margin: 0 auto; padding: 48px 24px; }
+        h1 { font-size: clamp(30px, 5vw, 44px); line-height: 1.1; margin-bottom: 24px; letter-spacing: -0.5px; font-weight: 800; }
+        h2 { font-size: 20px; margin: 32px 0 12px; font-weight: 700; }
+        p { color: var(--text-muted); font-size: 15px; margin-bottom: 14px; }
+        a { color: var(--accent); }
+        .content-card { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 40px; }
+        footer { max-width: 900px; margin: 0 auto; padding: 24px; border-top: 1px solid var(--border); text-align: center; font-size: 11px; color: var(--text-muted); font-family: 'Space Mono', monospace; }
+        @media (max-width: 600px) { .content-card { padding: 28px; } }
+    </style>
+</head>
+<body>
+
+<nav>
+    <a href="/" class="logo">&gt;_ PrintSettings</a>
+    <div class="nav-links">
+        <a href="/" class="nav-link">Settings</a>
+        <a href="/about.html" class="nav-link active">About</a>
+        <a href="/contact.html" class="nav-link">Contact</a>
+        <a href="/privacy.html" class="nav-link">Privacy</a>
+    </div>
+</nav>
+
+<div class="container">
+    <div class="content-card">
+        <h1>About PrintSettings</h1>
+
+        <p>PrintSettings is a free reference site for Creality Ender 3 V2 owners. It exists for one reason: when you want to know what nozzle temperature to use for PETG, or what retraction distance works best for TPU, you shouldn't have to dig through 50 Reddit threads or watch a 20-minute YouTube video to find out.</p>
+
+        <p>Pick your filament, get the settings, get back to printing.</p>
+
+        <h2>Why the Ender 3 V2?</h2>
+        <p>The Creality Ender 3 V2 is one of the best-selling 3D printers ever made. Millions of units sold worldwide, an enormous user community, and a reputation for being highly tuneable. It's also a printer that benefits enormously from proper settings — out of the box it produces decent prints, but with the right slicer settings it can match machines costing three times as much.</p>
+
+        <p>This site focuses specifically on the V2 (and the very similar Neo) because the Bowden extruder design and stock hotend make it different enough from other Ender variants that generic settings often don't work well.</p>
+
+        <h2>How These Settings Were Compiled</h2>
+        <p>The settings on this site come from years of community testing, manufacturer recommendations, and personal trial and error. They represent the consensus "best starting point" for each filament type — meaning they should produce good prints on a stock Ender 3 V2 with a 0.4mm nozzle, without needing extensive tuning.</p>
+
+        <p>That said, every roll of filament is slightly different. Different brands, different colours, even different batches behave differently. Treat these settings as a starting point and fine-tune from there using calibration prints (temperature towers, retraction tests, flow rate cubes).</p>
+
+        <h2>Slicer Compatibility</h2>
+        <p>All settings are presented in generic form (temperature, speed, distance, etc.) so they work with any slicer — Cura, PrusaSlicer, OrcaSlicer, SuperSlicer, Bambu Studio, you name it. The terminology is mostly the same; just the menu locations differ.</p>
+
+        <p>Cura is recommended for beginners because Creality officially supports it and there's a built-in Ender 3 V2 profile to start from. PrusaSlicer and OrcaSlicer offer more advanced features for experienced users.</p>
+
+        <h2>About the Author</h2>
+        <p>This site is run by a 3D printing enthusiast who's been printing on various Ender machines since 2019. Not affiliated with Creality, not paid by any filament brand — just trying to share what works.</p>
+
+        <h2>Contact</h2>
+        <p>Got feedback, a settings suggestion, or want to report something that doesn't work? Visit the <a href="/contact.html">contact page</a>.</p>
+    </div>
+</div>
+
+<footer>
+    <div style="margin-bottom: 12px;">
+        <a href="/" style="color: var(--text-muted); margin: 0 12px; text-decoration: none;">Settings</a>
+        <a href="/about.html" style="color: var(--text-muted); margin: 0 12px; text-decoration: none;">About</a>
+        <a href="/contact.html" style="color: var(--text-muted); margin: 0 12px; text-decoration: none;">Contact</a>
+        <a href="/privacy.html" style="color: var(--text-muted); margin: 0 12px; text-decoration: none;">Privacy</a>
+    </div>
+    &copy; 2026 PrintSettings. Not affiliated with Creality.
+</footer>
+
+</body>
+</html>

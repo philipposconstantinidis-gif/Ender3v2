@@ -2,8 +2,6 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3836314846497472"
-     crossorigin="anonymous"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ender 3 V2 Settings — 3D Printer Settings for Every Filament (PLA, PETG, ABS, TPU)</title>
     <meta name="description" content="Best Creality Ender 3 V2 print settings and retraction settings for PLA, PETG, ABS, TPU, Nylon and more. Nozzle temp, bed temp, speed, slicer settings — all in one page.">
@@ -46,14 +44,28 @@
             padding: 24px 24px 0;
             display: flex;
             align-items: center;
-            gap: 12px;
+            justify-content: space-between;
+            gap: 16px;
+            flex-wrap: wrap;
         }
         nav .logo {
             font-family: 'Space Mono', monospace;
             font-size: 16px;
             color: var(--accent);
             font-weight: 700;
+            text-decoration: none;
         }
+        nav .nav-links { display: flex; gap: 22px; align-items: center; }
+        nav .nav-link {
+            font-family: 'Sora', sans-serif;
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: color 0.15s;
+        }
+        nav .nav-link:hover { color: var(--text); }
+        nav .nav-link.active { color: var(--accent); font-weight: 600; }
         nav .sep { width: 1px; height: 14px; background: var(--border); }
         nav .sub { font-size: 12px; color: var(--text-muted); font-weight: 500; }
 
@@ -362,9 +374,13 @@
 <body>
 
 <nav>
-    <span class="logo">&gt;_ PrintSettings</span>
-    <span class="sep"></span>
-    <span class="sub">Ender 3 V2 Quick Reference</span>
+    <a href="/" class="logo">&gt;_ PrintSettings</a>
+    <div class="nav-links">
+        <a href="/" class="nav-link active">Settings</a>
+        <a href="/about.html" class="nav-link">About</a>
+        <a href="/contact.html" class="nav-link">Contact</a>
+        <a href="/privacy.html" class="nav-link">Privacy</a>
+    </div>
 </nav>
 
 <div class="ad-slot"><div class="ad-slot-inner">Ad Space — Leaderboard</div></div>
@@ -409,6 +425,55 @@
         <h2>Ender 3 V2 Settings for Cura and Other Slicers</h2>
         <p>These are recommended <strong>3D printer settings</strong> for the <strong>Creality Ender 3 V2</strong> with a stock 0.4mm brass nozzle and Bowden extruder. Every roll of filament varies slightly, so treat these as a baseline and fine-tune from here. If you're using a direct drive mod or hardened nozzle, temperatures may need adjusting.</p>
         <p>Settings are optimised for <strong>Cura</strong>, but work with PrusaSlicer, OrcaSlicer and other <strong>3D printing slicer settings</strong> — just map the values to the equivalent fields. The <strong>retraction settings</strong> below are specifically tuned for the Ender 3 V2's Bowden tube setup.</p>
+
+        <h2 style="margin-top:28px;">Getting the Most Out of Your Ender 3 V2</h2>
+        <p>The Creality Ender 3 V2 is one of the most popular 3D printers ever made — millions sold worldwide, and an enormous community of users tweaking, modding and improving it. While it's a fantastic printer for the price, it ships with reasonable but not optimal settings, and getting genuinely great prints out of it requires some calibration and tuning. This guide covers what actually matters.</p>
+
+        <h3>Why Tuning Matters</h3>
+        <p>Out of the box, the Ender 3 V2 will produce decent prints. But with proper calibration — bed levelling, e-steps, flow rate, retraction — you can transform it into a printer that produces results rivalling machines costing three times as much. Most "Ender 3 V2 prints badly" complaints online are actually calibration issues, not hardware problems. Spend an evening dialling in your settings and the difference is dramatic.</p>
+
+        <h3>The Five Calibrations That Matter Most</h3>
+        <p><strong>1. Bed levelling.</strong> The single most important factor in print quality. A level bed means consistent first layers, and a good first layer means a successful print. Manual levelling using the paper method works fine if you do it carefully, but installing a BLTouch or CRTouch auto-levelling probe (around £20-40) is a worthwhile upgrade that eliminates the issue entirely. Always level when the bed is hot — thermal expansion changes the geometry.</p>
+
+        <p><strong>2. E-steps calibration.</strong> The extruder needs to push exactly the right amount of filament. Mark 100mm of filament from the extruder, tell the printer to extrude 100mm, then measure how much actually went in. Adjust the e-steps in the firmware until 100mm requested = 100mm extruded. Get this wrong and every print will be over- or under-extruded.</p>
+
+        <p><strong>3. Flow rate.</strong> Even with correct e-steps, different filaments behave differently. Print a single-wall calibration cube and measure the wall thickness with calipers. Adjust the flow rate (typically 95-105%) until the measured wall matches the slicer setting.</p>
+
+        <p><strong>4. Temperature towers.</strong> Print a temperature tower for each new filament brand to find the optimal temperature. The "perfect" PLA temperature varies by brand — anywhere from 195°C to 215°C is normal. Pick the temperature where you see the best layer adhesion with the least stringing.</p>
+
+        <p><strong>5. Retraction tuning.</strong> Print a retraction test (a model with thin towers connected by gaps). Adjust retraction distance and speed until the gaps between towers are clean with no strings. For the stock Bowden setup, 5-7mm distance at 25mm/s is usually correct.</p>
+
+        <h2 style="margin-top:36px;">Common Ender 3 V2 Print Problems and Fixes</h2>
+
+        <h3>First Layer Won't Stick</h3>
+        <p>This is the number one issue Ender 3 V2 owners face. Causes and fixes: bed not level (re-level when hot), nozzle too far from bed (decrease Z offset by 0.05mm at a time), bed too cool (increase by 5°C), bed dirty (clean with isopropyl alcohol), or print speed too fast for first layer (drop to 20-25mm/s). Most "stuck" issues come down to these five things.</p>
+
+        <h3>Stringing Between Parts</h3>
+        <p>Stringing — those thin spider-web strands of plastic between separate parts of a print — is caused by molten filament leaking from the nozzle during travel moves. Fix by increasing retraction distance (try +1mm), lowering nozzle temperature (-5°C), enabling Z-hop on retraction, or drying your filament if it's been exposed to humid air for weeks. PETG strings more than PLA — that's normal.</p>
+
+        <h3>Layer Shifts Mid-Print</h3>
+        <p>If your print suddenly offsets sideways partway through, your belts are likely too loose or one of the stepper motors is skipping. Check belt tension (you should be able to pluck them and hear a low note, like a bass string), make sure the eccentric nuts on the rollers aren't too tight, and verify the X and Y stepper drivers aren't overheating. Slowing down the print speed (especially travel speed) often fixes this.</p>
+
+        <h3>Under-Extrusion / Gaps in Walls</h3>
+        <p>If your prints look thin, weak, or have gaps between walls, you're under-extruding. Check that the extruder gear isn't slipping (clean any plastic shavings out), increase flow rate by 2-3%, and make sure your nozzle isn't partially clogged. A cold pull (heating the nozzle, then pulling filament out at 90°C) clears most clogs without disassembly.</p>
+
+        <h3>Elephant's Foot</h3>
+        <p>"Elephant's foot" is when the bottom layer of a print bulges outward, making the base wider than intended. Causes: bed temperature too high, nozzle squashing the first layer too hard, or insufficient cooling on the first layer. Fix by reducing bed temp by 5°C, raising the Z offset slightly, or enabling "initial layer horizontal expansion" of -0.1mm in Cura.</p>
+
+        <h2 style="margin-top:36px;">Recommended Upgrades for the Ender 3 V2</h2>
+        <p>The Ender 3 V2 is famously moddable. While it works fine stock, a few well-chosen upgrades dramatically improve quality and reliability without breaking the bank.</p>
+
+        <p><strong>Auto bed levelling probe (BLTouch/CRTouch, £20-40)</strong> — eliminates manual levelling entirely. The single biggest quality-of-life upgrade. Worth it on day one.</p>
+
+        <p><strong>Glass or PEI bed (£15-25)</strong> — better adhesion and easier print removal than the stock textured surface. PEI sheets are particularly good for ABS and Nylon.</p>
+
+        <p><strong>Capricorn Bowden tube (£8-12)</strong> — the stock tube has a relatively wide internal diameter, which causes filament wobble during retraction. The Capricorn tube has a tighter ID, which significantly reduces stringing.</p>
+
+        <p><strong>All-metal hotend (£25-40)</strong> — the stock hotend has a PTFE liner that limits you to around 240°C maximum. An all-metal hotend lets you print high-temperature filaments like Nylon and PC reliably.</p>
+
+        <p><strong>Direct drive conversion (£40-80)</strong> — moving the extruder onto the print head (instead of the Bowden setup) makes flexible filaments like TPU dramatically easier to print and improves retraction performance overall. This is a more involved mod but very worthwhile.</p>
+
+        <p><strong>Klipper firmware (free)</strong> — replacing the stock Marlin firmware with Klipper (running on a Raspberry Pi) unlocks input shaping, pressure advance, and significantly higher print speeds. Steep learning curve but produces visibly better prints.</p>
 
         <h2 style="margin-top:28px;">Frequently Asked Questions</h2>
 
@@ -476,7 +541,15 @@
 
 <div class="ad-slot" style="margin-bottom:16px;"><div class="ad-slot-inner">Ad Space — Bottom</div></div>
 
-<footer>&copy; 2026 PrintSettings. Not affiliated with Creality.</footer>
+<footer>
+    <div style="margin-bottom: 12px;">
+        <a href="/" style="color: var(--text-muted); margin: 0 12px; text-decoration: none;">Settings</a>
+        <a href="/about.html" style="color: var(--text-muted); margin: 0 12px; text-decoration: none;">About</a>
+        <a href="/contact.html" style="color: var(--text-muted); margin: 0 12px; text-decoration: none;">Contact</a>
+        <a href="/privacy.html" style="color: var(--text-muted); margin: 0 12px; text-decoration: none;">Privacy</a>
+    </div>
+    &copy; 2026 PrintSettings. Not affiliated with Creality.
+</footer>
 
 <script>
 const FILAMENTS = {

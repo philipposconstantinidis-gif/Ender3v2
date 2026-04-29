@@ -3,204 +3,764 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>How to 3D Print an Articulated Dragon on Your Creality Ender 3 V2 — Settings, STL Files & Tips</title>
-    <meta name="description" content="Complete guide to 3D printing articulated dragons on the Creality Ender 3 V2. Best dragon STL files, exact Cura settings, common problems, and tips for a perfect print-in-place dragon.">
-    <meta name="keywords" content="3d printed dragon, 3d print dragon, 3d printed dragons, articulated dragon 3d print, 3d printed dragon ender 3, creality dragon, print in place dragon, dragon stl file, crystal dragon 3d print, articulated dragon settings, 3d printed fidget toys, cool things to 3d print, things to 3d print">
-    <link rel="canonical" href="https://ender3v2.com/dragon.html">
+    <title>Ender 3 V2 Settings — 3D Printer Settings for Every Filament (PLA, PETG, ABS, TPU)</title>
+    <meta name="description" content="Best Creality Ender 3 V2 print settings and retraction settings for PLA, PETG, ABS, TPU, Nylon and more. Nozzle temp, bed temp, speed, slicer settings — all in one page.">
+    <meta name="keywords" content="ender 3 v2, creality ender 3 v2, ender 3 v2 settings, 3d printer settings, 3d printer retraction settings, 3d printing retraction settings, 3d printing slicer settings, 3d printer slicer settings, ender 3 v2 PLA settings, ender 3 v2 PETG settings, ender 3 v2 ABS settings, ender 3 v2 retraction, creality ender 3 v2 3d printer">
+    <link rel="canonical" href="">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Sora:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Sora:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-        :root { --bg: #0C0E12; --surface: #14171E; --surface-2: #1C2028; --text: #E4E5EA; --text-muted: #6E7280; --accent: #3B82F6; --accent-glow: rgba(59,130,246,0.1); --accent-border: rgba(59,130,246,0.25); --green: #34D399; --amber: #FBBF24; --red: #F87171; --border: #262A34; }
-        body { font-family: 'Sora', sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; -webkit-font-smoothing: antialiased; }
-        nav { max-width: 900px; margin: 0 auto; padding: 24px 24px 0; display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
-        nav .brand { font-family: 'Space Mono', monospace; font-size: 15px; font-weight: 700; color: var(--accent); text-decoration: none; display: flex; align-items: center; gap: 8px; }
-        nav .brand .dot { width: 7px; height: 7px; background: var(--green); border-radius: 50%; box-shadow: 0 0 6px var(--green); }
-        nav .nav-links { display: flex; gap: 22px; }
-        nav .nav-link { font-size: 12px; font-weight: 500; color: var(--text-muted); text-decoration: none; }
+
+        :root {
+            --bg: #0C0E12;
+            --surface: #14171E;
+            --surface-2: #1C2028;
+            --text: #E4E5EA;
+            --text-muted: #6E7280;
+            --accent: #3B82F6;
+            --accent-glow: rgba(59,130,246,0.1);
+            --accent-border: rgba(59,130,246,0.25);
+            --green: #34D399;
+            --amber: #FBBF24;
+            --red: #F87171;
+            --border: #262A34;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Sora', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        nav {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 24px 24px 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+        nav .logo {
+            font-family: 'Space Mono', monospace;
+            font-size: 16px;
+            color: var(--accent);
+            font-weight: 700;
+            text-decoration: none;
+        }
+        nav .nav-links { display: flex; gap: 22px; align-items: center; }
+        nav .nav-link {
+            font-family: 'Sora', sans-serif;
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: color 0.15s;
+        }
         nav .nav-link:hover { color: var(--text); }
-        nav .nav-link.active { color: var(--accent); }
-        .hero { max-width: 900px; margin: 0 auto; padding: 64px 24px 32px; }
-        .breadcrumb { font-size: 12px; color: var(--text-muted); margin-bottom: 16px; }
-        .breadcrumb a { color: var(--text-muted); text-decoration: none; }
-        .breadcrumb a:hover { color: var(--accent); }
-        .hero h1 { font-size: clamp(28px, 4vw, 42px); font-weight: 800; line-height: 1.15; letter-spacing: -1px; margin-bottom: 14px; }
-        .hero h1 .accent { color: var(--accent); }
-        .hero .subtitle { font-size: 15px; color: var(--text-muted); max-width: 620px; line-height: 1.7; margin-bottom: 20px; }
-        .hero-tags { display: flex; gap: 8px; flex-wrap: wrap; }
-        .hero-tag { font-size: 11px; font-weight: 600; padding: 6px 12px; background: var(--surface); border: 1px solid var(--border); border-radius: 6px; color: var(--text-muted); }
-        .content { max-width: 900px; margin: 0 auto; padding: 16px 24px 64px; }
-        .content-card { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 48px; margin-bottom: 24px; }
-        .content-card h2 { font-size: 22px; font-weight: 700; letter-spacing: -0.5px; margin-bottom: 16px; }
-        .content-card h3 { font-size: 16px; font-weight: 700; margin: 24px 0 10px; }
-        .content-card p { font-size: 14px; color: var(--text-muted); line-height: 1.8; margin-bottom: 14px; }
-        .content-card a { color: var(--accent); text-decoration: none; }
-        .content-card strong { color: var(--text); }
-        .dragon-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 20px 0; }
-        .dragon-card { background: var(--surface-2); border: 1px solid var(--border); border-radius: 12px; padding: 22px; }
-        .dragon-card .dragon-name { font-size: 16px; font-weight: 700; margin-bottom: 6px; }
-        .dragon-card .dragon-designer { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; color: var(--accent); margin-bottom: 8px; }
-        .dragon-card p { font-size: 13px; color: var(--text-muted); line-height: 1.6; margin-bottom: 10px; }
-        .dragon-card .dragon-meta { display: flex; gap: 8px; flex-wrap: wrap; }
-        .dragon-card .dragon-tag { font-size: 10px; font-weight: 600; padding: 4px 8px; background: var(--accent-glow); border: 1px solid var(--accent-border); border-radius: 4px; color: var(--accent); }
-        .settings-table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 13px; }
-        .settings-table th { text-align: left; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted); padding: 10px 16px; border-bottom: 1px solid var(--border); }
-        .settings-table td { padding: 12px 16px; border-bottom: 1px solid var(--border); }
-        .settings-table tr:last-child td { border-bottom: none; }
-        .settings-table .label { color: var(--text-muted); }
-        .settings-table .value { font-family: 'Space Mono', monospace; font-weight: 700; color: var(--text); }
-        .step { display: flex; gap: 16px; margin-bottom: 20px; }
-        .step-num { width: 32px; height: 32px; background: var(--accent); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 700; color: white; flex-shrink: 0; margin-top: 2px; }
-        .step-content h4 { font-size: 14px; font-weight: 700; margin-bottom: 4px; }
-        .step-content p { font-size: 13px; color: var(--text-muted); margin-bottom: 0; }
-        .problem-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 16px 0; }
-        .problem-card { background: var(--surface-2); border: 1px solid var(--border); border-radius: 10px; padding: 18px; }
-        .problem-card .problem-name { font-size: 13px; font-weight: 700; margin-bottom: 4px; display: flex; align-items: center; gap: 6px; }
-        .problem-card .problem-name .icon { font-size: 16px; }
-        .problem-card .fix { font-size: 12px; color: var(--text-muted); line-height: 1.6; }
-        .tip-box { background: var(--accent-glow); border: 1px solid var(--accent-border); border-radius: 10px; padding: 18px 22px; margin: 16px 0; font-size: 13px; color: var(--text-muted); }
-        .tip-box strong { color: var(--accent); }
-        .faq-item summary { font-weight: 600; font-size: 14px; cursor: pointer; padding: 14px 0; list-style: none; display: flex; align-items: center; gap: 10px; border-bottom: 1px solid var(--border); color: var(--text); }
+        nav .nav-link.active { color: var(--accent); font-weight: 600; }
+        nav .sep { width: 1px; height: 14px; background: var(--border); }
+        nav .sub { font-size: 12px; color: var(--text-muted); font-weight: 500; }
+
+        .ad-slot {
+            display: none;
+            max-width: 900px;
+            margin: 0 auto 8px;
+            padding: 0 24px;
+        }
+        .ad-slot-inner {
+            background: var(--surface);
+            border: 1px dashed var(--border);
+            border-radius: 8px;
+            padding: 18px;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .hero {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 48px 24px 32px;
+        }
+        .hero .chip {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--accent-glow);
+            border: 1px solid var(--accent-border);
+            color: var(--accent);
+            font-family: 'Space Mono', monospace;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            padding: 6px 14px;
+            border-radius: 6px;
+            margin-bottom: 24px;
+        }
+        .hero .chip .dot {
+            width: 6px; height: 6px;
+            background: var(--accent);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+        .hero h1 {
+            font-size: clamp(30px, 5vw, 48px);
+            font-weight: 800;
+            line-height: 1.1;
+            letter-spacing: -0.5px;
+            margin-bottom: 16px;
+        }
+        .hero h1 span { color: var(--accent); }
+        .hero p {
+            font-size: 15px;
+            color: var(--text-muted);
+            max-width: 600px;
+            line-height: 1.7;
+        }
+
+        /* ── FILAMENT SELECTOR ── */
+        .selector-section {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 24px 24px;
+        }
+        .selector-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            overflow: hidden;
+        }
+        .selector-header {
+            padding: 24px 28px 0;
+            display: flex;
+            align-items: baseline;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        .selector-header h2 {
+            font-size: 18px;
+            font-weight: 700;
+        }
+        .selector-header .printer-tag {
+            font-family: 'Space Mono', monospace;
+            font-size: 11px;
+            color: var(--text-muted);
+            background: var(--surface-2);
+            padding: 4px 10px;
+            border-radius: 4px;
+            border: 1px solid var(--border);
+        }
+        .selector-body { padding: 20px 28px 28px; }
+
+        .filament-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 28px;
+        }
+        .fil-btn {
+            padding: 10px 20px;
+            font-family: 'Sora', sans-serif;
+            font-size: 13px;
+            font-weight: 600;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            cursor: pointer;
+            background: transparent;
+            color: var(--text-muted);
+            transition: all 0.2s;
+            position: relative;
+        }
+        .fil-btn:hover {
+            border-color: var(--accent);
+            color: var(--text);
+        }
+        .fil-btn.active {
+            background: var(--accent);
+            border-color: var(--accent);
+            color: white;
+        }
+        .fil-btn .diff {
+            position: absolute;
+            top: -6px;
+            right: -6px;
+            font-size: 9px;
+            font-weight: 700;
+            padding: 2px 6px;
+            border-radius: 4px;
+            text-transform: uppercase;
+        }
+        .diff-easy { background: var(--green); color: #0C0E12; }
+        .diff-med { background: var(--amber); color: #0C0E12; }
+        .diff-hard { background: var(--red); color: #0C0E12; }
+
+        /* ── SETTINGS TABLE ── */
+        .settings-display {
+            background: var(--surface-2);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        .settings-title {
+            padding: 18px 24px;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .settings-title h3 {
+            font-size: 16px;
+            font-weight: 700;
+        }
+        .settings-title h3 span { color: var(--accent); }
+        .diff-badge {
+            font-size: 11px;
+            font-weight: 700;
+            padding: 4px 10px;
+            border-radius: 20px;
+        }
+
+        .settings-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 0;
+        }
+        .setting-cell {
+            padding: 18px 24px;
+            border-bottom: 1px solid var(--border);
+            border-right: 1px solid var(--border);
+        }
+        .setting-cell:last-child { border-right: none; }
+        .setting-label {
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-muted);
+            margin-bottom: 4px;
+        }
+        .setting-value {
+            font-family: 'Space Mono', monospace;
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--accent);
+        }
+        .setting-range {
+            font-size: 11px;
+            color: var(--text-muted);
+            margin-top: 2px;
+        }
+
+        .tips-box {
+            padding: 18px 24px;
+            border-top: 1px solid var(--border);
+            background: var(--accent-glow);
+        }
+        .tips-box h4 {
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            color: var(--accent);
+            margin-bottom: 8px;
+        }
+        .tips-box p {
+            font-size: 13px;
+            color: var(--text-muted);
+            line-height: 1.7;
+        }
+
+        /* ── INFO / FAQ ── */
+        .info-section {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 16px 24px 48px;
+        }
+        .info-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 32px;
+        }
+        .info-card h2 {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+        .info-card p {
+            color: var(--text-muted);
+            font-size: 14px;
+            margin-bottom: 14px;
+            line-height: 1.75;
+        }
+        .faq-item { margin-bottom: 8px; }
+        .faq-item summary {
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            padding: 14px 0;
+            list-style: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-bottom: 1px solid var(--border);
+        }
         .faq-item[open] summary { border-bottom-color: var(--accent); }
         .faq-item summary::-webkit-details-summary { display: none; }
-        .faq-item summary::before { content: '+'; display: inline-flex; align-items: center; justify-content: center; width: 20px; height: 20px; background: var(--surface-2); border: 1px solid var(--border); color: var(--accent); font-weight: 700; font-size: 13px; flex-shrink: 0; border-radius: 5px; }
-        .faq-item[open] summary::before { content: '−'; background: var(--accent); color: white; border-color: var(--accent); }
-        .faq-item .faq-answer { padding: 10px 0 14px 30px; color: var(--text-muted); font-size: 13px; line-height: 1.7; border-bottom: 1px solid var(--border); }
-        footer { max-width: 900px; margin: 0 auto; padding: 32px 24px; border-top: 1px solid var(--border); text-align: center; font-size: 11px; color: var(--text-muted); }
-        footer a { color: var(--text-muted); text-decoration: none; margin: 0 12px; }
-        footer a:hover { color: var(--accent); }
-        @media (max-width: 600px) { .dragon-grid, .problem-grid { grid-template-columns: 1fr; } .content-card { padding: 28px; } }
+        .faq-item summary::before {
+            content: '+';
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 22px; height: 22px;
+            border-radius: 6px;
+            background: var(--surface-2);
+            border: 1px solid var(--border);
+            color: var(--accent);
+            font-weight: 700;
+            font-size: 14px;
+            flex-shrink: 0;
+            font-family: 'Space Mono', monospace;
+        }
+        .faq-item[open] summary::before {
+            content: '−';
+            background: var(--accent);
+            border-color: var(--accent);
+            color: white;
+        }
+        .faq-item .faq-answer {
+            padding: 12px 0 8px 32px;
+            color: var(--text-muted);
+            font-size: 13px;
+            line-height: 1.75;
+        }
+
+        footer {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 24px;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            font-size: 11px;
+            color: var(--text-muted);
+            font-family: 'Space Mono', monospace;
+        }
+
+        @media (max-width: 600px) {
+            .selector-header, .selector-body { padding-left: 20px; padding-right: 20px; }
+            .setting-cell { padding: 14px 18px; }
+            .setting-value { font-size: 18px; }
+            .settings-grid { grid-template-columns: 1fr 1fr; }
+            .info-card { padding: 24px; }
+        }
     </style>
 </head>
 <body>
-<nav><a href="/" class="brand"><span class="dot"></span> ender3v2.com</a><div class="nav-links"><a href="/" class="nav-link">Settings</a><a href="/dragon.html" class="nav-link active">Dragon Guide</a><a href="/about.html" class="nav-link">About</a><a href="/contact.html" class="nav-link">Contact</a></div></nav>
+
+<nav>
+    <a href="/" class="logo">&gt;_ ender3v2.com</a>
+    <div class="nav-links">
+        <a href="/" class="nav-link active">Settings</a>
+        <a href="/dragon.html" class="nav-link">Dragon Guide</a>
+        <a href="/about.html" class="nav-link">About</a>
+        <a href="/contact.html" class="nav-link">Contact</a>
+        <a href="/privacy.html" class="nav-link">Privacy</a>
+    </div>
+</nav>
+
+<div class="ad-slot"><div class="ad-slot-inner">Ad Space — Leaderboard</div></div>
 
 <section class="hero">
-    <div class="breadcrumb"><a href="/">Ender 3 V2 Settings</a> → Dragon Guide</div>
-    <h1>How to 3D print an <span class="accent">articulated dragon</span> on your Creality Ender 3 V2</h1>
-    <p class="subtitle">The complete guide to print-in-place articulated dragons — where to find the best STL files, exact Cura settings for the Ender 3 V2, how to avoid common problems, and tips for a perfect dragon every time.</p>
-    <div class="hero-tags"><span class="hero-tag">Print-in-Place</span><span class="hero-tag">No Supports</span><span class="hero-tag">~4-16 Hours</span><span class="hero-tag">PLA or Silk PLA</span></div>
+    <div class="chip"><span class="dot"></span> Creality Ender 3 V2</div>
+    <h1>Ender 3 V2 <span>3D printer settings</span> for every filament</h1>
+    <p>Complete Creality Ender 3 V2 slicer settings and retraction settings for PLA, PETG, ABS, TPU, Nylon and more. Select your filament below — no guesswork, no forum digging.</p>
 </section>
 
-<div class="content">
-    <div class="content-card">
-        <h2>What are articulated dragons?</h2>
-        <p>Articulated dragons are print-in-place 3D models that come off the print bed as a single piece with moving joints — no assembly, no glue, no screws. The body is made up of interlocking segments that flex and bend, letting the dragon coil, pose, and move like a real creature. They went viral on TikTok and are now one of the most popular things to 3D print.</p>
-        <p>The Creality Ender 3 V2 is perfectly capable of printing articulated dragons. The 220x220mm bed fits most popular dragon models at full size, and with the right Cura settings, even the Bowden extruder produces clean, smooth joints. Thousands of Ender 3 owners have printed beautiful dragons — you just need the right settings.</p>
-    </div>
+<section class="selector-section">
+    <div class="selector-card">
+        <div class="selector-header">
+            <h2>Select Your Filament</h2>
+            <span class="printer-tag">Creality Ender 3 V2 · 0.4mm nozzle</span>
+        </div>
+        <div class="selector-body">
 
-    <div class="content-card">
-        <h2>Best dragon STL files for the Ender 3 V2</h2>
-        <p>These are the most popular and most-printed articulated dragon models. All are print-in-place, require no supports, and fit on the Ender 3 V2's 220x220mm build plate.</p>
-        <div class="dragon-grid">
-            <div class="dragon-card">
-                <div class="dragon-designer">Cinderwing3D</div>
-                <div class="dragon-name">Crystal Dragon</div>
-                <p>The original viral dragon. Crystal formations along the back, jointed legs, and a head that sits up via interlocking spikes. Looks stunning in silk or multicolour filament.</p>
-                <div class="dragon-meta"><span class="dragon-tag">Cults3D</span><span class="dragon-tag">~$4</span><span class="dragon-tag">Print-in-Place</span></div>
+            <div class="filament-grid" id="filament-grid">
+                <button class="fil-btn active" onclick="selectFilament('pla')">PLA<span class="diff diff-easy">Easy</span></button>
+                <button class="fil-btn" onclick="selectFilament('pla_plus')">PLA+<span class="diff diff-easy">Easy</span></button>
+                <button class="fil-btn" onclick="selectFilament('petg')">PETG<span class="diff diff-med">Med</span></button>
+                <button class="fil-btn" onclick="selectFilament('abs')">ABS<span class="diff diff-hard">Hard</span></button>
+                <button class="fil-btn" onclick="selectFilament('tpu')">TPU<span class="diff diff-med">Med</span></button>
+                <button class="fil-btn" onclick="selectFilament('asa')">ASA<span class="diff diff-hard">Hard</span></button>
+                <button class="fil-btn" onclick="selectFilament('nylon')">Nylon<span class="diff diff-hard">Hard</span></button>
+                <button class="fil-btn" onclick="selectFilament('wood')">Wood PLA<span class="diff diff-easy">Easy</span></button>
+                <button class="fil-btn" onclick="selectFilament('silk')">Silk PLA<span class="diff diff-easy">Easy</span></button>
             </div>
-            <div class="dragon-card">
-                <div class="dragon-designer">McGybeer</div>
-                <div class="dragon-name">Articulated Dragon</div>
-                <p>Over 40,000 paid downloads. Elegant segments, smooth movement, and excellent joint tolerances. The gold standard for articulated dragons.</p>
-                <div class="dragon-meta"><span class="dragon-tag">Cults3D</span><span class="dragon-tag">~$3-5</span><span class="dragon-tag">40K+ Downloads</span></div>
-            </div>
-            <div class="dragon-card">
-                <div class="dragon-designer">FlexiFactory (Dan Sopala)</div>
-                <div class="dragon-name">Imperial Dragon</div>
-                <p>Gracious poseable design with fused segments. 80 curved back spikes make this medium-to-difficult but the result is spectacular. Needs good cooling.</p>
-                <div class="dragon-meta"><span class="dragon-tag">Cults3D</span><span class="dragon-tag">~$4</span><span class="dragon-tag">Poseable</span></div>
-            </div>
-            <div class="dragon-card">
-                <div class="dragon-designer">Various / Free</div>
-                <div class="dragon-name">Articulated Spirit Dragon</div>
-                <p>Free on Printables and Thingiverse. Community-modified with multiple head variants and blunted spikes for easier printing. Great for beginners.</p>
-                <div class="dragon-meta"><span class="dragon-tag">Printables</span><span class="dragon-tag">Free</span><span class="dragon-tag">Beginner-Friendly</span></div>
+
+            <div class="settings-display" id="settings-display">
+                <!-- Filled by JS -->
             </div>
         </div>
-        <div class="tip-box"><strong>Where to find dragon STL files:</strong> Printables has the best free options. Cults3D has premium designs from Cinderwing3D, McGybeer, and FlexiFactory. Thingiverse has older but proven free designs. Search "articulated dragon" on any platform.</div>
     </div>
+</section>
 
-    <div class="content-card">
-        <h2>Exact Cura settings for articulated dragons on the Ender 3 V2</h2>
-        <p>These settings are optimised for print-in-place dragons on the Ender 3 V2 with a stock 0.4mm nozzle and Bowden extruder. They prioritise clean joint separation and smooth movement.</p>
-        <table class="settings-table">
-            <tr><th>Setting</th><th>Value</th><th>Why</th></tr>
-            <tr><td class="label">Nozzle Temp</td><td class="value">205°C</td><td class="label">Slightly higher for good flow into joint gaps</td></tr>
-            <tr><td class="label">Bed Temp</td><td class="value">60°C</td><td class="label">Strong first layer — critical for dragons</td></tr>
-            <tr><td class="label">Layer Height</td><td class="value">0.20mm</td><td class="label">Best balance of detail and speed</td></tr>
-            <tr><td class="label">Print Speed</td><td class="value">45mm/s</td><td class="label">Slower for clean spikes and joints</td></tr>
-            <tr><td class="label">Wall Count</td><td class="value">3</td><td class="label">Strong segments that don't crack</td></tr>
-            <tr><td class="label">Infill</td><td class="value">15% Gyroid</td><td class="label">Light for movement, strong for handling</td></tr>
-            <tr><td class="label">Retraction</td><td class="value">6.5mm @ 25mm/s</td><td class="label">Reduces stringing between segments</td></tr>
-            <tr><td class="label">Fan Speed</td><td class="value">100%</td><td class="label">Essential for sharp spikes and overhangs</td></tr>
-            <tr><td class="label">Support</td><td class="value">OFF</td><td class="label">Print-in-place — supports will ruin joints</td></tr>
-            <tr><td class="label">Adhesion</td><td class="value">Brim (5mm)</td><td class="label">Prevents lifting on long dragons</td></tr>
-            <tr><td class="label">Z-Hop</td><td class="value">ON (0.2mm)</td><td class="label">Nozzle clears spikes during travel</td></tr>
-            <tr><td class="label">Combing</td><td class="value">Within Infill</td><td class="label">Fewer blobs on the surface</td></tr>
-        </table>
-        <div class="tip-box"><strong>Silk PLA:</strong> Increase nozzle to 215°C and reduce speed to 40mm/s. Silk is slightly more brittle — slower speed gives better layer bonding. The shimmer effect on dragon scales is worth it.</div>
+<div class="ad-slot" style="padding-top:24px;"><div class="ad-slot-inner">Ad Space — In-Article</div></div>
+
+<section class="info-section">
+    <div class="info-card">
+        <h2>Ender 3 V2 Settings for Cura and Other Slicers</h2>
+        <p>These are recommended <strong>3D printer settings</strong> for the <strong>Creality Ender 3 V2</strong> with a stock 0.4mm brass nozzle and Bowden extruder. Every roll of filament varies slightly, so treat these as a baseline and fine-tune from here. If you're using a direct drive mod or hardened nozzle, temperatures may need adjusting.</p>
+        <p>Settings are optimised for <strong>Cura</strong>, but work with PrusaSlicer, OrcaSlicer and other <strong>3D printing slicer settings</strong> — just map the values to the equivalent fields. The <strong>retraction settings</strong> below are specifically tuned for the Ender 3 V2's Bowden tube setup.</p>
+
+        <h2 style="margin-top:28px;">Getting the Most Out of Your Ender 3 V2</h2>
+        <p>The Creality Ender 3 V2 is one of the most popular 3D printers ever made — millions sold worldwide, and an enormous community of users tweaking, modding and improving it. While it's a fantastic printer for the price, it ships with reasonable but not optimal settings, and getting genuinely great prints out of it requires some calibration and tuning. This guide covers what actually matters.</p>
+
+        <h3>Why Tuning Matters</h3>
+        <p>Out of the box, the Ender 3 V2 will produce decent prints. But with proper calibration — bed levelling, e-steps, flow rate, retraction — you can transform it into a printer that produces results rivalling machines costing three times as much. Most "Ender 3 V2 prints badly" complaints online are actually calibration issues, not hardware problems. Spend an evening dialling in your settings and the difference is dramatic.</p>
+
+        <h3>The Five Calibrations That Matter Most</h3>
+        <p><strong>1. Bed levelling.</strong> The single most important factor in print quality. A level bed means consistent first layers, and a good first layer means a successful print. Manual levelling using the paper method works fine if you do it carefully, but installing a BLTouch or CRTouch auto-levelling probe (around £20-40) is a worthwhile upgrade that eliminates the issue entirely. Always level when the bed is hot — thermal expansion changes the geometry.</p>
+
+        <p><strong>2. E-steps calibration.</strong> The extruder needs to push exactly the right amount of filament. Mark 100mm of filament from the extruder, tell the printer to extrude 100mm, then measure how much actually went in. Adjust the e-steps in the firmware until 100mm requested = 100mm extruded. Get this wrong and every print will be over- or under-extruded.</p>
+
+        <p><strong>3. Flow rate.</strong> Even with correct e-steps, different filaments behave differently. Print a single-wall calibration cube and measure the wall thickness with calipers. Adjust the flow rate (typically 95-105%) until the measured wall matches the slicer setting.</p>
+
+        <p><strong>4. Temperature towers.</strong> Print a temperature tower for each new filament brand to find the optimal temperature. The "perfect" PLA temperature varies by brand — anywhere from 195°C to 215°C is normal. Pick the temperature where you see the best layer adhesion with the least stringing.</p>
+
+        <p><strong>5. Retraction tuning.</strong> Print a retraction test (a model with thin towers connected by gaps). Adjust retraction distance and speed until the gaps between towers are clean with no strings. For the stock Bowden setup, 5-7mm distance at 25mm/s is usually correct.</p>
+
+        <h2 style="margin-top:36px;">Common Ender 3 V2 Print Problems and Fixes</h2>
+
+        <h3>First Layer Won't Stick</h3>
+        <p>This is the number one issue Ender 3 V2 owners face. Causes and fixes: bed not level (re-level when hot), nozzle too far from bed (decrease Z offset by 0.05mm at a time), bed too cool (increase by 5°C), bed dirty (clean with isopropyl alcohol), or print speed too fast for first layer (drop to 20-25mm/s). Most "stuck" issues come down to these five things.</p>
+
+        <h3>Stringing Between Parts</h3>
+        <p>Stringing — those thin spider-web strands of plastic between separate parts of a print — is caused by molten filament leaking from the nozzle during travel moves. Fix by increasing retraction distance (try +1mm), lowering nozzle temperature (-5°C), enabling Z-hop on retraction, or drying your filament if it's been exposed to humid air for weeks. PETG strings more than PLA — that's normal.</p>
+
+        <h3>Layer Shifts Mid-Print</h3>
+        <p>If your print suddenly offsets sideways partway through, your belts are likely too loose or one of the stepper motors is skipping. Check belt tension (you should be able to pluck them and hear a low note, like a bass string), make sure the eccentric nuts on the rollers aren't too tight, and verify the X and Y stepper drivers aren't overheating. Slowing down the print speed (especially travel speed) often fixes this.</p>
+
+        <h3>Under-Extrusion / Gaps in Walls</h3>
+        <p>If your prints look thin, weak, or have gaps between walls, you're under-extruding. Check that the extruder gear isn't slipping (clean any plastic shavings out), increase flow rate by 2-3%, and make sure your nozzle isn't partially clogged. A cold pull (heating the nozzle, then pulling filament out at 90°C) clears most clogs without disassembly.</p>
+
+        <h3>Elephant's Foot</h3>
+        <p>"Elephant's foot" is when the bottom layer of a print bulges outward, making the base wider than intended. Causes: bed temperature too high, nozzle squashing the first layer too hard, or insufficient cooling on the first layer. Fix by reducing bed temp by 5°C, raising the Z offset slightly, or enabling "initial layer horizontal expansion" of -0.1mm in Cura.</p>
+
+        <h2 style="margin-top:36px;">Recommended Upgrades for the Ender 3 V2</h2>
+        <p>The Ender 3 V2 is famously moddable. While it works fine stock, a few well-chosen upgrades dramatically improve quality and reliability without breaking the bank.</p>
+
+        <p><strong>Auto bed levelling probe (BLTouch/CRTouch, £20-40)</strong> — eliminates manual levelling entirely. The single biggest quality-of-life upgrade. Worth it on day one.</p>
+
+        <p><strong>Glass or PEI bed (£15-25)</strong> — better adhesion and easier print removal than the stock textured surface. PEI sheets are particularly good for ABS and Nylon.</p>
+
+        <p><strong>Capricorn Bowden tube (£8-12)</strong> — the stock tube has a relatively wide internal diameter, which causes filament wobble during retraction. The Capricorn tube has a tighter ID, which significantly reduces stringing.</p>
+
+        <p><strong>All-metal hotend (£25-40)</strong> — the stock hotend has a PTFE liner that limits you to around 240°C maximum. An all-metal hotend lets you print high-temperature filaments like Nylon and PC reliably.</p>
+
+        <p><strong>Direct drive conversion (£40-80)</strong> — moving the extruder onto the print head (instead of the Bowden setup) makes flexible filaments like TPU dramatically easier to print and improves retraction performance overall. This is a more involved mod but very worthwhile.</p>
+
+        <p><strong>Klipper firmware (free)</strong> — replacing the stock Marlin firmware with Klipper (running on a Raspberry Pi) unlocks input shaping, pressure advance, and significantly higher print speeds. Steep learning curve but produces visibly better prints.</p>
+
+        <h2 style="margin-top:28px;">Frequently Asked Questions</h2>
+
+        <details class="faq-item">
+            <summary>What temperature should I print PLA at on the Ender 3 V2?</summary>
+            <div class="faq-answer">Start at 200°C nozzle and 60°C bed. If you see stringing, drop the nozzle temp by 5°C. If layers aren't bonding well, increase by 5°C. Most PLA brands print best between 195–210°C on this printer.</div>
+        </details>
+
+        <details class="faq-item">
+            <summary>What are the best Ender 3 V2 retraction settings?</summary>
+            <div class="faq-answer">For the stock Bowden extruder, 6mm retraction distance at 25mm/s is a good starting point for PLA. PETG needs less retraction (5mm) because it's stringier and too much retraction causes clogs. TPU should have retraction disabled or set very low (1–2mm) due to its flexibility.</div>
+        </details>
+
+        <details class="faq-item">
+            <summary>Can the Ender 3 V2 print ABS?</summary>
+            <div class="faq-answer">Yes, but it's challenging without an enclosure. ABS warps easily in open air because it's sensitive to temperature changes. You'll need a heated bed at 100–110°C, nozzle at 230–250°C, and ideally a cardboard or acrylic enclosure around the printer to trap heat. Turn the part cooling fan off completely.</div>
+        </details>
+
+        <details class="faq-item">
+            <summary>What print speed should I use on the Ender 3 V2?</summary>
+            <div class="faq-answer">For PLA, 50mm/s is a reliable starting point that balances quality and speed. You can push to 60–70mm/s for less detailed prints. For PETG and TPU, slow down to 30–40mm/s. ABS and Nylon print best around 40–50mm/s. Always reduce speed for the first layer — 25mm/s is recommended regardless of filament.</div>
+        </details>
+
+        <details class="faq-item">
+            <summary>Why are my prints stringing on the Ender 3 V2?</summary>
+            <div class="faq-answer">Stringing is almost always caused by one of three things: nozzle temperature too high (try dropping 5°C), retraction distance too low (try 6–7mm for Bowden), or filament that's absorbed moisture (dry it at 50°C for 4–6 hours). PETG is especially prone to stringing — it's normal for that material and can be reduced but rarely eliminated completely.</div>
+        </details>
+
+        <details class="faq-item">
+            <summary>Do I need to dry my filament before printing?</summary>
+            <div class="faq-answer">For PLA, usually not unless it's been left unsealed for weeks. For PETG, Nylon, and TPU — absolutely. These materials absorb moisture from the air which causes bubbling, stringing, and weak layer adhesion. A food dehydrator at 50–65°C for 4–6 hours works well, or use a dedicated filament dryer.</div>
+        </details>
+
+        <details class="faq-item">
+            <summary>What's the difference between PLA and PLA+?</summary>
+            <div class="faq-answer">PLA+ (also sold as PLA Pro) is modified PLA with additives that improve toughness, reduce brittleness, and slightly improve heat resistance. Print settings are nearly identical — PLA+ sometimes benefits from 5°C higher nozzle temperature. It's a good upgrade from standard PLA for functional parts.</div>
+        </details>
+
+        <details class="faq-item">
+            <summary>Should I use a glass bed or the stock bed?</summary>
+            <div class="faq-answer">The stock textured glass bed on the Ender 3 V2 works well for PLA and PETG. For ABS and Nylon, some users prefer a PEI spring steel sheet for better adhesion. If prints aren't sticking, try cleaning the bed with isopropyl alcohol (IPA) before each print — oils from your fingers cause most adhesion issues.</div>
+        </details>
+
+        <details class="faq-item">
+            <summary>What are the best Ender 3 V2 settings for Cura?</summary>
+            <div class="faq-answer">All settings on this page are optimised for Cura. Start with the Creality Ender 3 V2 profile in Cura, then override the key values (nozzle temp, bed temp, speed, retraction) with the filament-specific settings shown above. The most important Cura settings to change from default are retraction distance (6mm for PLA), print speed, and fan speed. Leave "combing mode" on "within infill" to reduce stringing.</div>
+        </details>
+
+        <details class="faq-item">
+            <summary>How do I set the Z offset on the Ender 3 V2?</summary>
+            <div class="faq-answer">The Z offset controls how close the nozzle sits to the bed on the first layer. On the Ender 3 V2, go to Control → Motion → Z Offset in the menu. Start at 0 and decrease in -0.05mm steps until the first layer is slightly squished but not transparent. A good first layer should look smooth with no gaps between lines. If using a BLTouch/CRTouch, set the Z offset after running the auto-level probe.</div>
+        </details>
+
+        <details class="faq-item">
+            <summary>How do I do manual bed leveling on the Ender 3 V2?</summary>
+            <div class="faq-answer">Preheat the bed to your printing temperature first (thermal expansion matters). Go to Prepare → Auto Home, then Prepare → Disable Steppers. Move the print head to each corner manually and slide a piece of paper between the nozzle and bed. Adjust the corner wheel until you feel slight friction on the paper. Repeat all four corners twice — adjusting one corner affects the others. Level the bed before every few prints for best results.</div>
+        </details>
+
+        <details class="faq-item">
+            <summary>What are the best 3D printer retraction settings for Bowden tubes?</summary>
+            <div class="faq-answer">For Bowden extruders like the Ender 3 V2's, retraction distance needs to be higher than direct drive setups because of the longer filament path. Start at 6mm distance and 25mm/s speed for PLA. For PETG, reduce to 5mm. For TPU, use 0–2mm or disable retraction entirely. If you're still getting stringing, increase distance by 0.5mm increments rather than changing speed. Retraction speed above 40mm/s risks grinding the filament.</div>
+        </details>
     </div>
+</section>
 
-    <div class="content-card">
-        <h2>Step by step: printing your first dragon</h2>
-        <div class="step"><div class="step-num">1</div><div class="step-content"><h4>Download and open the STL</h4><p>Download your chosen dragon STL. Open Cura, select Ender 3 V2, drag the file in. Don't rotate it — dragons are designed to print in the provided orientation.</p></div></div>
-        <div class="step"><div class="step-num">2</div><div class="step-content"><h4>Check it fits your bed</h4><p>Must fit within 220x220mm. If too large, scale down — but don't go below 80% or joint gaps get too small and segments fuse. Check the model's notes for minimum scale.</p></div></div>
-        <div class="step"><div class="step-num">3</div><div class="step-content"><h4>Apply the settings above</h4><p>Enter all settings from the table. Most important: supports OFF, fan 100%, Z-hop ON, 45mm/s speed. Slice and preview the first layer.</p></div></div>
-        <div class="step"><div class="step-num">4</div><div class="step-content"><h4>Prepare your bed</h4><p>Clean with isopropyl alcohol. Level carefully — dragons are unforgiving of bad first layers. If one section lifts, the entire print fails.</p></div></div>
-        <div class="step"><div class="step-num">5</div><div class="step-content"><h4>Print and don't touch it</h4><p>Typical dragon: 8-16 hours. Don't open doors/windows near the printer — drafts cause warping. Check at 30 minutes to confirm first layer is clean.</p></div></div>
-        <div class="step"><div class="step-num">6</div><div class="step-content"><h4>Remove and free the joints</h4><p>Let the bed cool completely. Flex each joint gently starting from the tail. Don't force it. Joints loosen with use. Clean strings with a craft knife or quick heat gun pass.</p></div></div>
-    </div>
+<div class="ad-slot" style="margin-bottom:16px;"><div class="ad-slot-inner">Ad Space — Bottom</div></div>
 
-    <div class="content-card">
-        <h2>Common problems and fixes</h2>
-        <div class="problem-grid">
-            <div class="problem-card"><div class="problem-name"><span class="icon">🔗</span> Joints fused together</div><div class="fix">Nozzle temp too high — drop 5°C. Or over-extrusion — reduce flow to 95%. If scaled below 100%, gaps shrink and may fuse.</div></div>
-            <div class="problem-card"><div class="problem-name"><span class="icon">💔</span> Joints snap when flexing</div><div class="fix">Temp too low — increase 5°C. Check wall count is 3+. Use PLA+ for stronger joints. Let model cool fully before flexing.</div></div>
-            <div class="problem-card"><div class="problem-name"><span class="icon">🕸️</span> Stringing between segments</div><div class="fix">Increase retraction to 7mm. Enable Z-hop. Lower nozzle 5°C. A quick heat gun pass removes cosmetic stringing.</div></div>
-            <div class="problem-card"><div class="problem-name"><span class="icon">📐</span> First layer lifting</div><div class="fix">Clean bed with IPA. Re-level. Add brim (5-8mm). Increase bed to 65°C. Use hairspray on glass bed.</div></div>
-            <div class="problem-card"><div class="problem-name"><span class="icon">🔥</span> Spikes look melted</div><div class="fix">Fan not at 100% or printing too fast. Drop speed to 40mm/s. Check your fan is actually spinning.</div></div>
-            <div class="problem-card"><div class="problem-name"><span class="icon">📏</span> Too small / detail lost</div><div class="fix">Most dragons are designed for 100% scale. Below 80%, detail is lost. Use 0.12mm layers for smaller prints.</div></div>
-        </div>
-    </div>
-
-    <div class="content-card">
-        <h2>Tips for the best dragon print</h2>
-        <h3>Best filament for dragons</h3>
-        <p><strong>Silk PLA</strong> is the community favourite — metallic shimmer looks incredible on dragon scales. Gold, copper, and dual-colour silks are the top choices. Slightly more brittle at joints, so handle gently for the first few flexes.</p>
-        <p><strong>Regular PLA</strong> is the safest for your first dragon. Stronger joints, easier to print, every colour available. Matte PLA hides layer lines.</p>
-        <p><strong>PLA+</strong> gives the strongest joints. Ideal for desk fidget toys or dragons for kids.</p>
-        <h3>Multicolour without a multimaterial system</h3>
-        <p>Use "pause at height" in Cura to swap filament mid-print. Swap at 2-3mm for a different belly colour, or every few centimetres for a gradient. Tri-colour silk filaments create rainbow effects with zero filament changes.</p>
-        <h3>Post-processing</h3>
-        <p>Most dragons look great off the bed. Quick heat gun pass removes stringing. Light 400-grit sanding smooths the top surface. Clear satin spray gives a professional finish. For painted dragons, grey spray primer first, then acrylics.</p>
-    </div>
-
-    <div class="content-card">
-        <h2>Frequently Asked Questions</h2>
-        <details class="faq-item"><summary>How long does it take to 3D print a dragon?</summary><div class="faq-answer">A standard 30cm dragon takes 8-14 hours on an Ender 3 V2 at 0.20mm / 45mm/s. Smaller 20cm dragons take 4-6 hours. Large 60cm+ dragons take 20-30 hours.</div></details>
-        <details class="faq-item"><summary>How much filament does a dragon use?</summary><div class="faq-answer">A typical 30cm dragon uses 50-80g at 15% infill — roughly £1-2 of PLA. A 1kg roll gives you 12-15 dragons.</div></details>
-        <details class="faq-item"><summary>Do I need supports for an articulated dragon?</summary><div class="faq-answer">No — print-in-place dragons are designed without supports. Adding supports will fuse the joints and ruin the model. Make sure supports are OFF in your slicer.</div></details>
-        <details class="faq-item"><summary>Can I print a dragon on a stock Ender 3 V2?</summary><div class="faq-answer">Yes — no upgrades needed. Stock Bowden extruder, stock nozzle, and default firmware print excellent dragons with the settings on this page.</div></details>
-        <details class="faq-item"><summary>Where can I download free dragon STL files?</summary><div class="faq-answer">Printables.com and Thingiverse have free articulated dragons. Search "articulated dragon" and sort by popularity. Premium models from Cinderwing3D, McGybeer, and FlexiFactory on Cults3D cost £3-5.</div></details>
-        <details class="faq-item"><summary>What are the best things to 3D print on an Ender 3 V2?</summary><div class="faq-answer">Articulated dragons, fidget toys, phone stands, articulated animals (octopus, lizards), desk organisers, and cosplay props. Check our <a href="/">settings page</a> for the right temperatures for each filament.</div></details>
-        <details class="faq-item"><summary>My dragon's joints are too tight — what do I do?</summary><div class="faq-answer">Flex gently — they loosen with use. If completely fused, nozzle temp was too high or you're over-extruding. Drop 5°C or reduce flow to 96%. Some models include "tight" and "loose" variants.</div></details>
-    </div>
-</div>
-
+<!-- CROSS-LINK BANNER -->
 <section style="max-width: 900px; margin: 0 auto; padding: 0 24px 32px;">
-    <a href="https://3dcheat.com" target="_blank" rel="noopener" style="display: block; background: var(--surface); border: 1px solid rgba(108,92,231,0.3); border-radius: 14px; padding: 24px 28px; text-decoration: none;">
-        <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;">
+    <a href="https://3dcheat.com" target="_blank" rel="noopener" style="display: block; background: linear-gradient(135deg, #1C2028 0%, #14171E 100%); border: 1px solid rgba(108,92,231,0.3); border-radius: 14px; padding: 28px 32px; text-decoration: none; transition: border-color 0.2s, transform 0.2s;">
+        <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px;">
             <div>
-                <div style="font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: #6C5CE7; margin-bottom: 6px;">More printers</div>
-                <div style="font-size: 16px; font-weight: 700; color: var(--text);">Settings for Bambu Lab, Prusa & more at 3DCheat.com</div>
+                <div style="font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: #6C5CE7; margin-bottom: 8px;">More printers available</div>
+                <div style="font-size: 20px; font-weight: 700; color: #E4E5EA; margin-bottom: 6px;">Settings for more printers at 3DCheat.com</div>
+                <div style="font-size: 14px; color: #6E7280;">Bambu Lab A1 · Bambu Lab P1S · Prusa MK4 · Ender 3 V3 SE · Elegoo Neptune 4</div>
             </div>
-            <div style="font-size: 13px; font-weight: 600; color: #6C5CE7;">Visit 3DCheat →</div>
+            <div style="font-size: 14px; font-weight: 600; color: #6C5CE7; white-space: nowrap;">Visit 3DCheat →</div>
         </div>
     </a>
 </section>
 
-<footer><div style="margin-bottom: 12px;"><a href="/">Settings</a><a href="/dragon.html">Dragon Guide</a><a href="/about.html">About</a><a href="/contact.html">Contact</a><a href="/privacy.html">Privacy</a></div>&copy; 2026 ender3v2.com. Not affiliated with Creality.</footer>
+<footer>
+    <div style="margin-bottom: 12px;">
+        <a href="/" style="color: var(--text-muted); margin: 0 12px; text-decoration: none;">Settings</a>
+        <a href="/dragon.html" style="color: var(--text-muted); margin: 0 12px; text-decoration: none;">Dragon Guide</a>
+        <a href="/about.html" style="color: var(--text-muted); margin: 0 12px; text-decoration: none;">About</a>
+        <a href="/contact.html" style="color: var(--text-muted); margin: 0 12px; text-decoration: none;">Contact</a>
+        <a href="/privacy.html" style="color: var(--text-muted); margin: 0 12px; text-decoration: none;">Privacy</a>
+    </div>
+    &copy; 2026 ender3v2.com. Not affiliated with Creality.
+</footer>
+
+<script>
+const FILAMENTS = {
+    pla: {
+        name: 'PLA',
+        difficulty: 'Easy',
+        diffClass: 'diff-easy',
+        nozzle: 200, nozzleRange: '195–210°C',
+        bed: 60, bedRange: '55–65°C',
+        speed: 50, speedRange: '40–60 mm/s',
+        retractDist: 6, retractDistRange: '5–7 mm',
+        retractSpeed: 25, retractSpeedRange: '20–30 mm/s',
+        fan: 100, fanRange: '100%',
+        flow: 100, flowRange: '95–100%',
+        layerHeight: '0.2', layerRange: '0.12–0.28 mm',
+        tips: 'PLA is the easiest filament to print. Start here if you\'re new. Keep the part cooling fan at 100% for best overhangs and bridging. If you get elephants foot on the first layer, reduce bed temp by 5°C or increase Z-offset slightly. Store sealed with silica gel packets.'
+    },
+    pla_plus: {
+        name: 'PLA+',
+        difficulty: 'Easy',
+        diffClass: 'diff-easy',
+        nozzle: 210, nozzleRange: '200–220°C',
+        bed: 60, bedRange: '55–65°C',
+        speed: 50, speedRange: '40–60 mm/s',
+        retractDist: 6, retractDistRange: '5–7 mm',
+        retractSpeed: 25, retractSpeedRange: '20–30 mm/s',
+        fan: 100, fanRange: '80–100%',
+        flow: 100, flowRange: '95–100%',
+        layerHeight: '0.2', layerRange: '0.12–0.28 mm',
+        tips: 'PLA+ prints almost identically to standard PLA but benefits from slightly higher nozzle temperature (~5–10°C more). It\'s tougher and less brittle, making it better for functional parts. Layer adhesion is usually stronger than regular PLA at the right temperature.'
+    },
+    petg: {
+        name: 'PETG',
+        difficulty: 'Medium',
+        diffClass: 'diff-med',
+        nozzle: 235, nozzleRange: '225–245°C',
+        bed: 80, bedRange: '75–85°C',
+        speed: 40, speedRange: '30–50 mm/s',
+        retractDist: 5, retractDistRange: '4–6 mm',
+        retractSpeed: 25, retractSpeedRange: '20–30 mm/s',
+        fan: 50, fanRange: '30–60%',
+        flow: 97, flowRange: '95–100%',
+        layerHeight: '0.2', layerRange: '0.16–0.28 mm',
+        tips: 'PETG is stringy by nature — some stringing is normal and can be removed with a heat gun. Don\'t squish the first layer too much or it will stick to the nozzle. Reduce fan speed compared to PLA — too much cooling causes poor layer adhesion. Z-hop on retraction helps reduce blobs. Clean bed with IPA before every print.'
+    },
+    abs: {
+        name: 'ABS',
+        difficulty: 'Hard',
+        diffClass: 'diff-hard',
+        nozzle: 240, nozzleRange: '230–250°C',
+        bed: 100, bedRange: '95–110°C',
+        speed: 45, speedRange: '35–50 mm/s',
+        retractDist: 5, retractDistRange: '4–6 mm',
+        retractSpeed: 25, retractSpeedRange: '20–30 mm/s',
+        fan: 0, fanRange: '0% (off)',
+        flow: 100, flowRange: '98–102%',
+        layerHeight: '0.2', layerRange: '0.16–0.28 mm',
+        tips: 'ABS needs an enclosure on the Ender 3 V2 to prevent warping and layer splitting. Even a cardboard box over the printer helps. Turn the part cooling fan completely off — ABS needs ambient heat to bond layers. Use a brim of 8–10mm for better bed adhesion. Print in a well-ventilated room as ABS fumes are harmful. Glue stick on the glass bed helps adhesion.'
+    },
+    tpu: {
+        name: 'TPU (95A)',
+        difficulty: 'Medium',
+        diffClass: 'diff-med',
+        nozzle: 225, nozzleRange: '220–235°C',
+        bed: 50, bedRange: '45–60°C',
+        speed: 25, speedRange: '15–30 mm/s',
+        retractDist: 1.5, retractDistRange: '0–2 mm',
+        retractSpeed: 20, retractSpeedRange: '15–25 mm/s',
+        fan: 100, fanRange: '80–100%',
+        flow: 105, flowRange: '100–110%',
+        layerHeight: '0.2', layerRange: '0.16–0.24 mm',
+        tips: 'TPU is flexible and will jam if you go too fast with the Bowden tube setup. Print very slowly — 25mm/s or less. Disable or minimise retraction to prevent the filament buckling in the Bowden tube. Direct drive mods make TPU significantly easier. Keep the filament path as short and straight as possible. Wider line widths (0.45–0.5mm) help with consistent extrusion.'
+    },
+    asa: {
+        name: 'ASA',
+        difficulty: 'Hard',
+        diffClass: 'diff-hard',
+        nozzle: 245, nozzleRange: '235–260°C',
+        bed: 100, bedRange: '95–110°C',
+        speed: 45, speedRange: '35–50 mm/s',
+        retractDist: 5, retractDistRange: '4–6 mm',
+        retractSpeed: 25, retractSpeedRange: '20–30 mm/s',
+        fan: 0, fanRange: '0–15%',
+        flow: 100, flowRange: '98–102%',
+        layerHeight: '0.2', layerRange: '0.16–0.28 mm',
+        tips: 'ASA is essentially UV-resistant ABS — same printing challenges but the result withstands outdoor use. Requires an enclosure. Slightly higher temps than ABS. Produces fumes — print in a ventilated area or use an air filter. Excellent for outdoor functional parts like garden fixtures, car mounts, or tool holders.'
+    },
+    nylon: {
+        name: 'Nylon (PA)',
+        difficulty: 'Hard',
+        diffClass: 'diff-hard',
+        nozzle: 250, nozzleRange: '240–260°C',
+        bed: 70, bedRange: '60–80°C',
+        speed: 40, speedRange: '30–45 mm/s',
+        retractDist: 5, retractDistRange: '4–7 mm',
+        retractSpeed: 25, retractSpeedRange: '20–30 mm/s',
+        fan: 0, fanRange: '0–20%',
+        flow: 100, flowRange: '98–105%',
+        layerHeight: '0.2', layerRange: '0.16–0.28 mm',
+        tips: 'Nylon absorbs moisture aggressively — you MUST dry it before printing (70°C for 6–12 hours). Even fresh-from-the-bag nylon benefits from drying. Use a PEI sheet or glue stick for bed adhesion — nylon doesn\'t stick well to bare glass. An enclosure helps prevent warping. Nylon is extremely tough but difficult to dial in on the Ender 3 V2.'
+    },
+    wood: {
+        name: 'Wood PLA',
+        difficulty: 'Easy',
+        diffClass: 'diff-easy',
+        nozzle: 200, nozzleRange: '190–210°C',
+        bed: 60, bedRange: '55–65°C',
+        speed: 40, speedRange: '30–50 mm/s',
+        retractDist: 6, retractDistRange: '5–7 mm',
+        retractSpeed: 25, retractSpeedRange: '20–30 mm/s',
+        fan: 100, fanRange: '100%',
+        flow: 105, flowRange: '100–110%',
+        layerHeight: '0.24', layerRange: '0.2–0.3 mm',
+        tips: 'Wood PLA contains wood fibre particles that can clog a 0.4mm nozzle over long prints — a 0.5mm or 0.6mm nozzle is recommended. Vary temperature slightly during the print (190–210°C) to create a natural wood grain colour effect. Avoid very thin layer heights as they increase clog risk. Prints can be sanded and stained like real wood.'
+    },
+    silk: {
+        name: 'Silk PLA',
+        difficulty: 'Easy',
+        diffClass: 'diff-easy',
+        nozzle: 215, nozzleRange: '205–225°C',
+        bed: 60, bedRange: '55–65°C',
+        speed: 40, speedRange: '30–50 mm/s',
+        retractDist: 6, retractDistRange: '5–7 mm',
+        retractSpeed: 25, retractSpeedRange: '20–30 mm/s',
+        fan: 80, fanRange: '60–100%',
+        flow: 100, flowRange: '95–102%',
+        layerHeight: '0.2', layerRange: '0.12–0.24 mm',
+        tips: 'Silk PLA needs slightly higher temperatures than regular PLA for the best sheen. Print slower for the shiniest finish — faster prints look duller. Slightly reducing fan speed can improve the glossy effect. These filaments are weaker than standard PLA so avoid for functional/structural parts. Great for decorative prints, vases, and display pieces.'
+    }
+};
+
+function selectFilament(key) {
+    document.querySelectorAll('.fil-btn').forEach(b => b.classList.remove('active'));
+    event.target.closest('.fil-btn').classList.add('active');
+    renderSettings(key);
+}
+
+function renderSettings(key) {
+    const f = FILAMENTS[key];
+    document.getElementById('settings-display').innerHTML = `
+        <div class="settings-title">
+            <h3><span>${f.name}</span> — Recommended Settings</h3>
+            <span class="diff-badge ${f.diffClass}">${f.difficulty}</span>
+        </div>
+        <div class="settings-grid">
+            <div class="setting-cell">
+                <div class="setting-label">Nozzle Temp</div>
+                <div class="setting-value">${f.nozzle}°C</div>
+                <div class="setting-range">Range: ${f.nozzleRange}</div>
+            </div>
+            <div class="setting-cell">
+                <div class="setting-label">Bed Temp</div>
+                <div class="setting-value">${f.bed}°C</div>
+                <div class="setting-range">Range: ${f.bedRange}</div>
+            </div>
+            <div class="setting-cell">
+                <div class="setting-label">Print Speed</div>
+                <div class="setting-value">${f.speed}<span style="font-size:14px">mm/s</span></div>
+                <div class="setting-range">Range: ${f.speedRange}</div>
+            </div>
+            <div class="setting-cell">
+                <div class="setting-label">Layer Height</div>
+                <div class="setting-value">${f.layerHeight}<span style="font-size:14px">mm</span></div>
+                <div class="setting-range">Range: ${f.layerRange}</div>
+            </div>
+            <div class="setting-cell">
+                <div class="setting-label">Retraction Dist</div>
+                <div class="setting-value">${f.retractDist}<span style="font-size:14px">mm</span></div>
+                <div class="setting-range">Range: ${f.retractDistRange}</div>
+            </div>
+            <div class="setting-cell">
+                <div class="setting-label">Retraction Speed</div>
+                <div class="setting-value">${f.retractSpeed}<span style="font-size:14px">mm/s</span></div>
+                <div class="setting-range">Range: ${f.retractSpeedRange}</div>
+            </div>
+            <div class="setting-cell">
+                <div class="setting-label">Fan Speed</div>
+                <div class="setting-value">${f.fan}<span style="font-size:14px">%</span></div>
+                <div class="setting-range">Range: ${f.fanRange}</div>
+            </div>
+            <div class="setting-cell">
+                <div class="setting-label">Flow Rate</div>
+                <div class="setting-value">${f.flow}<span style="font-size:14px">%</span></div>
+                <div class="setting-range">Range: ${f.flowRange}</div>
+            </div>
+        </div>
+        <div class="tips-box">
+            <h4>Tips for ${f.name}</h4>
+            <p>${f.tips}</p>
+        </div>
+    `;
+}
+
+renderSettings('pla');
+</script>
+
 </body>
 </html>

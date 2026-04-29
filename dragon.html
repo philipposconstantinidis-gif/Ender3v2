@@ -15,10 +15,9 @@
         :root { --bg: #0C0E12; --surface: #14171E; --surface-2: #1C2028; --text: #E4E5EA; --text-muted: #6E7280; --accent: #3B82F6; --accent-glow: rgba(59,130,246,0.1); --accent-border: rgba(59,130,246,0.25); --green: #34D399; --amber: #FBBF24; --red: #F87171; --border: #262A34; }
         body { font-family: 'Sora', sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; -webkit-font-smoothing: antialiased; }
         nav { max-width: 900px; margin: 0 auto; padding: 24px 24px 0; display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
-        nav .brand { font-family: 'Space Mono', monospace; font-size: 15px; font-weight: 700; color: var(--accent); text-decoration: none; display: flex; align-items: center; gap: 8px; }
-        nav .brand .dot { width: 7px; height: 7px; background: var(--green); border-radius: 50%; box-shadow: 0 0 6px var(--green); }
+        nav .brand { font-family: "Space Mono", monospace; font-size: 16px; font-weight: 700; color: var(--accent); text-decoration: none; }
         nav .nav-links { display: flex; gap: 22px; }
-        nav .nav-link { font-size: 12px; font-weight: 500; color: var(--text-muted); text-decoration: none; }
+        nav .nav-link { font-family: 'Sora', sans-serif; font-size: 13px; font-weight: 500; color: var(--text-muted); text-decoration: none; transition: color 0.15s; }
         nav .nav-link:hover { color: var(--text); }
         nav .nav-link.active { color: var(--accent); }
         .hero { max-width: 900px; margin: 0 auto; padding: 64px 24px 32px; }
@@ -74,7 +73,7 @@
     </style>
 </head>
 <body>
-<nav><a href="/" class="brand"><span class="dot"></span> ender3v2.com</a><div class="nav-links"><a href="/" class="nav-link">Settings</a><a href="/dragon.html" class="nav-link active">Dragon Guide</a><a href="/about.html" class="nav-link">About</a><a href="/contact.html" class="nav-link">Contact</a><a href="/privacy.html" class="nav-link">Privacy</a></div>
+<nav><a href="/" class="brand">&gt;_ ender3v2.com</a><div class="nav-links"><a href="/" class="nav-link">Settings</a><a href="/dragon.html" class="nav-link active">Dragon Guide</a><a href="/about.html" class="nav-link">About</a><a href="/contact.html" class="nav-link">Contact</a><a href="/privacy.html" class="nav-link">Privacy</a></div></nav>
 
 <section class="hero">
     <div class="breadcrumb"><a href="/">Ender 3 V2 Settings</a> → Dragon Guide</div>
